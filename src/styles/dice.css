@@ -1,0 +1,139 @@
+.dice {
+  --size: 72px;
+  width: var(--size);
+  height: var(--size);
+  padding: calc(var(--size) * 0.12);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border: 0;
+  border-radius: calc(var(--size) * 0.2);
+  background: linear-gradient(145deg, #fffdf5, #e4dcc8);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12), 0 8px 14px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.dice:hover:not(:disabled) {
+  transform: translateY(-4px);
+}
+
+.dice:disabled {
+  cursor: default;
+}
+
+.dice:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Cada celda de la grilla; solo algunas dibujan el pip */
+.dice__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice__cell--pip::after {
+  content: '';
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a4a, #111);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Dado guardado */
+.dice--held {
+  background: linear-gradient(145deg, #fff3c9, #f0d27a);
+  box-shadow: 0 0 0 4px var(--gold), 0 8px 14px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 600px) {
+  .dice {
+    --size: 56px;
+  }
+}
+
+/* ---------- Animación de lanzamiento ---------- */
+.dice {
+  /* Desde dónde "salen" los dados: del vaso, que queda a la izquierda */
+  --from-x: -200px;
+  --from-y: -20px;
+  --spin: 540deg;
+}
+
+.dice--rolled:nth-child(odd) {
+  --spin: -540deg;
+}
+
+.dice--rolled {
+  /* backwards: queda invisible mientras espera su turno, pero no fija el
+     estado final (así el hover sigue funcionando después) */
+  animation: dice-toss 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+}
+
+@keyframes dice-toss {
+  0% {
+    transform: translate(var(--from-x), var(--from-y)) rotate(var(--spin)) scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(0, 8px) rotate(20deg) scale(1.08);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(0, -6px) rotate(-8deg) scale(1);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* En pantallas chicas el vaso queda arriba de los dados */
+@media (max-width: 600px) {
+  .dice {
+    --from-x: 0px;
+    --from-y: -180px;
+  }
+}
+
+.dice--held {
+  animation: dice-settle 0.25s ease-out;
+}
+
+@keyframes dice-settle {
+  0% {
+    transform: scale(1.12);
+  }
+  60% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Marcado para guardar, todavía sin confirmar */
+.dice--marked {
+  background: linear-gradient(145deg, #d8ecff, #9cc4f2);
+  box-shadow: 0 0 0 4px #4d8fd6, 0 8px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Volviendo al cubilete tras confirmar la selección */
+.dice--returning {
+  animation: dice-return 0.45s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes dice-return {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--from-x), var(--from-y)) rotate(360deg) scale(0.3);
+    opacity: 0;
+  }
+}

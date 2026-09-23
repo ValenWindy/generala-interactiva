@@ -1,0 +1,118 @@
+.dice-cup {
+  --x: 0px;
+  --y: 0px;
+  --rot: 0deg;
+
+  position: relative;
+  z-index: 2; /* por encima de los dados mientras se mueve */
+  justify-self: center;
+  width: 150px;
+  height: 190px;
+  cursor: grab;
+
+  /* Imprescindible para que el dedo mueva el vaso y no scrollee la página */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+
+  transform: translate(var(--x), var(--y)) rotate(var(--rot));
+  /* Al soltar sin sacudir, vuelve a su lugar con un pequeño rebote */
+  transition: transform 0.35s cubic-bezier(0.2, 1.4, 0.4, 1), filter 0.2s;
+  filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.5));
+}
+
+/* Agarrado: sigue al puntero sin retraso */
+.dice-cup--dragging {
+  cursor: grabbing;
+  transition: filter 0.2s;
+}
+
+/* La sacudida ya es suficiente: brilla */
+.dice-cup--ready {
+  filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 16px rgba(242, 193, 78, 0.9));
+}
+
+.dice-cup--throwing {
+  cursor: default;
+  transition: none;
+  animation: cup-throw var(--throw-ms) ease-in-out;
+}
+
+.dice-cup--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dice-cup__body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Boca ancha arriba, base más angosta abajo */
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+  background: linear-gradient(90deg, #4a2c17, #7a4a28 45%, #4a2c17);
+}
+
+/* Borde superior del vaso */
+.dice-cup__body::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 16%;
+  background: linear-gradient(180deg, #2b190c, #3f2412);
+}
+
+.dice-cup__label {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* El vaso arranca desde donde estaba, se inclina a volcar los dados y vuelve */
+@keyframes cup-throw {
+  0% {
+    transform: translate(var(--x), var(--y)) rotate(var(--rot));
+  }
+  25% {
+    transform: translate(-10px, -30px) rotate(-14deg);
+  }
+  50%,
+  70% {
+    transform: translate(50px, -10px) rotate(110deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.dice-cup__hint {
+  position: absolute;
+  top: -1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  animation: hint-pop 0.25s ease-out;
+}
+
+@keyframes hint-pop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

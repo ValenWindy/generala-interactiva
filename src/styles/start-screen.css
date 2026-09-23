@@ -1,0 +1,131 @@
+.start {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.start__title {
+  margin: 0;
+  padding-left: 0.12em; /* compensa el letter-spacing para centrar bien */
+  font-size: clamp(3rem, 12vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-shadow: 0 4px 0 #8a6510, 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.start__modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.start__form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+.player-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.player-slot__number {
+  width: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.player-slot__btn {
+  flex-shrink: 0;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.player-slot__btn:hover {
+  color: var(--text);
+  border-color: var(--gold);
+}
+
+.player-slot__remove {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.player-slot__remove:hover {
+  background: rgba(220, 80, 80, 0.3);
+  color: #fff;
+}
+
+.start__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.start__label {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.start__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.start__input:focus-visible {
+  outline: 2px solid var(--gold);
+}
+
+.start__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.start__hint--muted {
+  margin-bottom: 0.25rem;
+}
+
+.start__rules-link {
+  margin-top: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  text-decoration: underline;
+  font-size: 0.85rem;
+}
+
+.start__rules-link:hover {
+  color: var(--gold);
+}

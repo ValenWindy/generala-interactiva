@@ -1,0 +1,118 @@
+.scoreboard {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.scoreboard__title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.scoreboard__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.scoreboard__player {
+  min-width: 48px;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scoreboard__player--active {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.scoreboard__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.score-row__label {
+  font-weight: 600;
+}
+
+.score-row__values {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.score-cell {
+  min-width: 48px;
+  padding: 0.35rem 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--gold);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.15s;
+}
+
+.score-cell--used {
+  color: var(--text-muted);
+}
+
+.score-cell--clickable {
+  cursor: pointer;
+  background: rgba(242, 193, 78, 0.12);
+}
+
+.score-cell--clickable:hover {
+  background: rgba(242, 193, 78, 0.25);
+}
+
+.score-cell:disabled {
+  cursor: default;
+}
+
+.scoreboard__totals {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+}
+
+.scoreboard__total-value {
+  min-width: 48px;
+  text-align: center;
+  color: var(--gold);
+}
+
+.scoreboard__scroll {
+  overflow-x: auto;
+}
+
+.score-cell,
+.scoreboard__player,
+.scoreboard__total-value {
+  min-width: 40px;
+}

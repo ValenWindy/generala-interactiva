@@ -1,0 +1,206 @@
+/* ---------- Layout general ---------- */
+.game {
+  min-height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ---------- Mesa ---------- */
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 28px;
+  border: 14px solid var(--wood);
+  background: radial-gradient(ellipse at center, var(--felt) 0%, var(--felt-dark) 100%);
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.55),
+    0 0 0 3px var(--wood-dark),
+    0 24px 50px rgba(0, 0, 0, 0.55);
+}
+
+.table__play {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* ---------- Info del turno ---------- */
+.turn-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.turn-info__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.turn-info__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.turn-info__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+
+/* ---------- Zona de dados ---------- */
+.dice-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dice-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.dice-zone--saved {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.dice-zone__dice {
+  min-height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dice-zone__hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dice-area__label {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dice-slot {
+  width: 72px;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+
+/* ---------- Tablero ---------- */
+.scoreboard {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.scoreboard__title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.scoreboard__placeholder {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.game__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .game__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .table {
+    padding: 1rem;
+    border-width: 8px;
+  }
+
+  .table__play {
+    grid-template-columns: 1fr;
+  }
+
+  .dice-slot {
+    width: 56px;
+  }
+
+  .dice-zone__dice {
+    min-height: 64px;
+  }
+
+<<<<<<< HEAD
+
+=======
+  .table__back {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 0.25rem;
+  }
+>>>>>>> e88907b689aff4142ae1199b762bb3693e4ae67f
+}
+
+.table {
+  position: relative;
+}
+
+.game__back {
+  align-self: flex-start;
+  margin-bottom: 0.25rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.game__back:hover {
+  color: var(--text);
+  border-color: var(--gold);
+}
+
+
+.table__actions {
+  display: flex;
+  justify-content: center;
+}
