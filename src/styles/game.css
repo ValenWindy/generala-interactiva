@@ -168,15 +168,11 @@
     min-height: 64px;
   }
 
-<<<<<<< HEAD
-
-=======
   .table__back {
     position: static;
     align-self: flex-start;
     margin-bottom: 0.25rem;
   }
->>>>>>> e88907b689aff4142ae1199b762bb3693e4ae67f
 }
 
 .table {
