@@ -200,3 +200,10 @@
   display: flex;
   justify-content: center;
 }
+
+.table__warning {
+  margin: 0.4rem 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #f2a94e;
+}

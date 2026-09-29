@@ -31,7 +31,10 @@ export default function Game({ players, onExit }) {
 
   const canRoll = !isCpuTurn && hasRollsLeft && allResolved
   const canInteract = !isCpuTurn && !allResolved && hasRollsLeft && !dice.some((d) => d.returning)
-  const canConfirm = canInteract
+  // Si confirmás y quedan lanzamientos, tiene que sobrar al menos un dado sin guardar
+  const allWouldBeHeld = dice.every((die) => die.held || die.marked)
+  const mustKeepOneLoose = hasRollsLeft && allWouldBeHeld
+  const canConfirm = canInteract && !mustKeepOneLoose
   const canSelectCategory = !isCpuTurn && rollCount > 0 && !dice.some((d) => d.returning)
 
   const activeTotal = Object.values(scoresByPlayer[activePlayer.id] || {}).reduce(
@@ -199,9 +202,16 @@ export default function Game({ players, onExit }) {
         </div>
         <div className="table__actions">
           {!isCpuTurn && (
-            <button className="btn btn--small" onClick={handleConfirmSelection} disabled={!canConfirm}>
-              Confirmar selección
-            </button>
+            <>
+              <button className="btn btn--small" onClick={handleConfirmSelection} disabled={!canConfirm}>
+                Confirmar selección
+              </button>
+              {canInteract && mustKeepOneLoose && (
+                <p className="table__warning">
+                  Dejá al menos un dado sin guardar para poder sacudir el cubilete de nuevo.
+                </p>
+              )}
+            </>
           )}
         </div>
       </section>
