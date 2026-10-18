@@ -1,0 +1,56 @@
+.special-offer__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.special-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.75rem 2rem;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #2a1c05, #4a330c);
+  border: 2px solid var(--gold);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.special-offer__title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.special-offer__points {
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.special-offer__question {
+  margin: 0.4rem 0 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.special-offer__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+/* En pantallas grandes, subirla para que no tape la mesa */
+@media (min-width: 601px) {
+  .special-offer__overlay {
+    align-items: flex-start;
+    padding-top: 8vh;
+  }
+}

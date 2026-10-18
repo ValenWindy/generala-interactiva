@@ -1,22 +1,25 @@
 # 🎲 Generala
 
-Juego web de **Generala** hecho con **React + Vite**, sin librerías externas. El foco del proyecto es la interacción: un vaso de dados que se agarra y se sacude de verdad (con Pointer Events, funciona igual en mouse y en touch) en vez de un simple botón de "tirar dados".
+Juego web de **Generala** hecho con **React + Vite**, sin librerías externas. El foco del proyecto es la interacción: un vaso de dados que se agarra de verdad (con Pointer Events, funciona igual en mouse y en touch) en vez de un simple botón de "tirar dados".
 
 ## ✨ Características
 
-- **Vaso interactivo**: se agarra, sigue el movimiento del cursor/dedo y detecta cuándo el gesto es una sacudida real (distancia mínima recorrida + cambios de dirección), no solo mantener presionado.
+- **Vaso interactivo**: se mantiene presionado y se suelta para lanzar los 5 dados. Mientras se sostiene, tiembla.
 - **5 dados con pips** (sin números), animados al salir del vaso.
 - **Selección de dados guiada**: después de cada lanzamiento, tocás los dados que querés guardar (quedan marcados) y confirmás con un botón. Los que no elegiste vuelven al vaso con una animación, listos para el próximo lanzamiento.
-- **Hasta 3 lanzamientos por turno**.
+- **Hasta 3 lanzamientos por turno**, con un aviso si intentás guardar los 5 dados antes de tiempo (no se puede sacudir un cubilete vacío).
 - **Reglas completas de Generala**: 1 a 6, Escalera, Full, Poker, Generala y Generala Doble (11 categorías).
 - **Combinaciones servidas**: lograr Escalera, Full, Poker, Generala o Generala Doble en el primer lanzamiento del turno suma +5 puntos extra.
+- **Cartel emergente** cuando sale una combinación especial en la mesa (sea servida o no).
+- **Ventana para elegir categoría** al terminar los 3 lanzamientos, separando lo que conviene anotar de lo que hay que tachar.
 - **Dos modos de juego**:
   - **Práctica**: un jugador, sin puntaje comparado.
   - **Común**: hasta 4 jugadores por partida. El primero sos vos; los demás son opcionales, y cada uno se puede asignar a un jugador humano (con nombre) o a la CPU con un botón, sin necesidad de completar los 4 puestos.
   - La CPU juega su propio turno de forma automática (sacude, decide qué guardar y elige categoría) con una estrategia simple.
 - **Tablero de puntuación** multi-columna con vista previa en vivo del puntaje que darían los dados actuales en cada categoría.
-- **Modal de reglas** ("¿Cómo se juega?") accesible desde el menú inicial, con la explicación del vaso, la selección de dados, la servida y una tabla con las 11 categorías y sus puntajes.
-- **Botón de volver** disponible durante toda la partida, para salir a la pantalla inicial sin perder tiempo recargando la página.
+- **Música de fondo y efectos de sonido**, con botón para silenciar.
+- **Modal de reglas** ("¿Cómo se juega?") accesible desde el menú inicial.
+- **Botón de volver** disponible durante toda la partida.
 - Pantalla de fin de partida con el resultado (ganador o empate en modo Común, puntaje final en modo Práctica) y opción de jugar de nuevo.
 - Diseño responsive, pensado para jugarse tanto en PC como en el celular.
 
@@ -25,13 +28,11 @@ Juego web de **Generala** hecho con **React + Vite**, sin librerías externas. E
 - React
 - Vite
 - CSS puro (sin frameworks ni librerías de UI)
-- Pointer Events API (sin dependencias de gestos)
+- Pointer Events API
 
 ## 🚀 Cómo correrlo localmente
 
 ```bash
-git clone <url-del-repo>
-cd generala
 npm install
 npm run dev
 ```
@@ -42,7 +43,15 @@ Para probar la interacción táctil desde el celular en la misma red:
 npm run dev -- --host
 ```
 
-y abrir desde el teléfono la dirección de red que muestra la terminal.
+## 🔊 Sonido
+
+Agregá estos 6 archivos en `public/sounds/` (no se incluyen en el repo):
+
+```
+roll.mp3, select.mp3, confirm.mp3, special.mp3, win.mp3, music.mp3
+```
+
+Sin ellos el juego funciona igual, simplemente sin audio.
 
 ## 📁 Estructura del proyecto
 
@@ -60,11 +69,15 @@ src/
 │  ├─ Dice.jsx
 │  ├─ DiceArea.jsx
 │  ├─ Scoreboard.jsx
-│  └─ GameOver.jsx
+│  ├─ GameOver.jsx
+│  ├─ SoundToggle.jsx
+│  ├─ SpecialPopup.jsx
+│  └─ CategoryPickerModal.jsx
 ├─ utils/
 │  ├─ dice.js
 │  ├─ scoring.js
-│  └─ cpu.js
+│  ├─ cpu.js
+│  └─ sound.js
 └─ styles/
    ├─ global.css
    ├─ start-screen.css
@@ -74,20 +87,11 @@ src/
    ├─ dice-cup.css
    ├─ instructions.css
    ├─ scoreboard.css
-   └─ game-over.css
+   ├─ game-over.css
+   ├─ sound-toggle.css
+   ├─ special-popup.css
+   └─ category-modal.css
 ```
-
-## 🎯 Cómo se juega
-
-1. Elegí **Modo Práctica** o **Modo Común** (agregando entre 2 y 4 jugadores, cada uno humano o CPU).
-2. Agarrá el vaso con el mouse o el dedo y sacudilo: cuando se pone dorado, ya se registró la sacudida.
-3. Soltalo para lanzar los dados.
-4. Tocá los dados que quieras guardar (quedan marcados) y confirmá la selección: los no elegidos vuelven al vaso animados, listos para relanzarse.
-5. Repetí hasta 3 lanzamientos por turno.
-6. Elegí una categoría del tablero para anotar tu puntaje y pasar al siguiente turno.
-7. La partida termina cuando se completaron las 11 categorías. En modo Común se anuncia el ganador (o el empate).
-
-Podés repasar todo esto en cualquier momento desde el enlace **¿Cómo se juega?** del menú inicial.
 
 ## 📌 Reglas de puntuación
 

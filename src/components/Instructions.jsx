@@ -5,7 +5,7 @@ export default function Instructions({ isCpuTurn, playerName }) {
     <p className="instructions">
       {isCpuTurn
         ? `${playerName} está jugando su turno...`
-        : 'Sacudí el vaso para tirar. Tocá los dados que querés guardar y confirmá la selección: los demás vuelven al cubilete para tirarlos de nuevo.'}
+        : 'Mantené presionado el vaso para sacudirlo y soltalo para lanzar los dados. Tocá los dados que querés guardar y confirmá la selección: los demás vuelven al cubilete.'}
     </p>
   )
 }

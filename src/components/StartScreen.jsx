@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import RulesModal from './RulesModal'
+import SoundToggle from './SoundToggle'
 import '../styles/start-screen.css'
 
 const MAX_PLAYERS = 4
 
-export default function StartScreen({ onStart }) {
+export default function StartScreen({ onStart, muted, onToggleMuted }) {
   const [mode, setMode] = useState(null) // null | 'common'
   const [showRules, setShowRules] = useState(false)
   const [playersDraft, setPlayersDraft] = useState([{ id: 1, name: '', isCPU: false }])
@@ -53,6 +54,7 @@ export default function StartScreen({ onStart }) {
   if (mode === 'common') {
     return (
       <main className="start">
+        <SoundToggle muted={muted} onToggle={onToggleMuted} />
         <h1 className="start__title">GENERALA</h1>
         <form className="start__form" onSubmit={startCommon}>
           <p className="start__hint start__hint--muted">
@@ -73,7 +75,11 @@ export default function StartScreen({ onStart }) {
               />
               {index > 0 &&
                 (p.isCPU ? (
-                  <button type="button" className="player-slot__btn" onClick={() => setAsPlayer(p.id)}>
+                  <button
+                    type="button"
+                    className="player-slot__btn"
+                    onClick={() => setAsPlayer(p.id)}
+                  >
                     Jugador
                   </button>
                 ) : (
@@ -125,6 +131,7 @@ export default function StartScreen({ onStart }) {
 
   return (
     <main className="start">
+      <SoundToggle muted={muted} onToggle={onToggleMuted} />
       <h1 className="start__title">GENERALA</h1>
       <div className="start__modes">
         <button className="btn" onClick={playPractice}>

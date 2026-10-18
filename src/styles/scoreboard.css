@@ -14,6 +14,10 @@
   color: var(--gold);
 }
 
+.scoreboard__scroll {
+  overflow-x: auto;
+}
+
 .scoreboard__header {
   display: flex;
   justify-content: space-between;
@@ -22,7 +26,7 @@
 }
 
 .scoreboard__player {
-  min-width: 48px;
+  min-width: 40px;
   text-align: center;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
@@ -63,7 +67,7 @@
 }
 
 .score-cell {
-  min-width: 48px;
+  min-width: 40px;
   padding: 0.35rem 0;
   border: 0;
   border-radius: 8px;
@@ -102,17 +106,7 @@
 }
 
 .scoreboard__total-value {
-  min-width: 48px;
+  min-width: 40px;
   text-align: center;
   color: var(--gold);
-}
-
-.scoreboard__scroll {
-  overflow-x: auto;
-}
-
-.score-cell,
-.scoreboard__player,
-.scoreboard__total-value {
-  min-width: 40px;
 }

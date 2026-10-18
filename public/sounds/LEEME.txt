@@ -1,0 +1,11 @@
+Poné acá estos 6 archivos de audio (con estos nombres exactos) para que suenen
+la música y los efectos del juego:
+
+roll.mp3      -> cae un dado / varios dados
+select.mp3    -> click corto, al marcar/desmarcar un dado
+confirm.mp3   -> al confirmar la selección
+special.mp3   -> fanfarria corta, al salir un especial
+win.mp3       -> fin de partida
+music.mp3     -> música de fondo en loop, volumen bajo
+
+Mientras no estén, el juego funciona igual (el audio simplemente no suena).

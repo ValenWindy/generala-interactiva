@@ -15,6 +15,9 @@ export const CATEGORIES = [
 const NUMBER_CATEGORY = new Set(['ones', 'twos', 'threes', 'fours', 'fives', 'sixes'])
 const SERVIDA_BONUS = 5
 
+// Orden de especiales de mayor a menor, para el cartel emergente
+const SPECIAL_IDS = ['generala-doble', 'generala', 'poker', 'full', 'straight']
+
 function countValues(values) {
   const counts = {}
   for (const v of values) counts[v] = (counts[v] || 0) + 1
@@ -39,14 +42,11 @@ function isGenerala(counts) {
   return Object.values(counts).some((n) => n === 5)
 }
 
-// La combinación cuenta como "servida" si se logró en el primer lanzamiento del turno
 function servidaBonus(rollCount, achieved) {
   return achieved && rollCount === 1 ? SERVIDA_BONUS : 0
 }
 
 // context: { rollCount, generalaScored }
-// rollCount: en qué lanzamiento del turno se anota (1, 2 o 3) — determina si es "servida"
-// generalaScored: si ese jugador ya tiene una Generala real anotada (habilita Generala Doble)
 export function calculateScore(categoryId, values, context = {}) {
   const { rollCount = null, generalaScored = false } = context
   if (values.some((v) => v === null) || values.length !== 5) return 0
@@ -76,7 +76,6 @@ export function calculateScore(categoryId, values, context = {}) {
       return achieved ? 50 + servidaBonus(rollCount, achieved) : 0
     }
     case 'generala-doble': {
-      // Sin Generala real previa, esta categoría solo sirve para tacharla (0 puntos)
       if (!generalaScored) return 0
       const achieved = isGenerala(counts)
       return achieved ? 100 + servidaBonus(rollCount, achieved) : 0
@@ -84,4 +83,20 @@ export function calculateScore(categoryId, values, context = {}) {
     default:
       return 0
   }
+}
+
+// Detecta el especial más valioso logrado con esta tirada, para el cartel emergente.
+// No depende de si ya se anotó: es solo para festejar lo que salió en la mesa.
+export function detectSpecial(values, rollCount, generalaScored) {
+  if (values.some((v) => v === null) || values.length !== 5) return null
+
+  for (const id of SPECIAL_IDS) {
+    const score = calculateScore(id, values, { rollCount, generalaScored })
+    if (score > 0) {
+      const category = CATEGORIES.find((c) => c.id === id)
+      return { id, label: category.label, score, servida: rollCount === 1 }
+    }
+  }
+
+  return null
 }

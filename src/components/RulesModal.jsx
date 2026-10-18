@@ -35,8 +35,8 @@ export default function RulesModal({ onClose }) {
         <section className="rules-modal__section">
           <h3>El vaso y los dados</h3>
           <p>
-            Agarrá el vaso y sacudilo para lanzar los 5 dados. Tenés hasta 3 lanzamientos por
-            turno.
+            Mantené presionado el vaso para sacudirlo y soltalo para lanzar los 5 dados. Tenés
+            hasta 3 lanzamientos por turno.
           </p>
           <p>
             Después de cada lanzamiento, tocá los dados que querés guardar y confirmá la

@@ -31,7 +31,7 @@ export default function Dice({
     <button
       type="button"
       className={classes.join(' ')}
-      style={rolled || returning ? { animationDelay: `${rollDelay}ms` } : undefined} 
+      style={rolled ? { animationDelay: `${rollDelay}ms` } : undefined}
       onClick={onClick}
       disabled={disabled || returning}
       aria-pressed={held || marked}

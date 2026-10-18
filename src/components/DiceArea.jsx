@@ -13,25 +13,21 @@ export default function DiceArea({ dice, rollCount, canInteract, onToggleDie }) 
         <p className="dice-area__label">En la mesa</p>
         <div className="dice-zone__dice">
           {onTable.map((die, index) =>
-  die.value === null ? (
-    <div key={die.id} className="dice-slot" />
-  ) : (
-    <Dice
-      key={`${die.id}-${rollCount}`}
-      value={die.value}
-      marked={die.marked}
-      returning={die.returning}
-      rolled={die.fresh}
-      rollDelay={
-        die.returning
-          ? index * 90 // stagger de la vuelta al cubilete
-          : FIRST_DELAY + index * STAGGER // stagger de la salida
-      }
-      disabled={!canInteract}
-      onClick={() => onToggleDie(die.id)}
-    />
-  )
-)}
+            die.value === null ? (
+              <div key={die.id} className="dice-slot" />
+            ) : (
+              <Dice
+                key={`${die.id}-${rollCount}`}
+                value={die.value}
+                marked={die.marked}
+                returning={die.returning}
+                rolled={die.fresh}
+                rollDelay={FIRST_DELAY + index * STAGGER}
+                disabled={!canInteract}
+                onClick={() => onToggleDie(die.id)}
+              />
+            )
+          )}
         </div>
       </section>
 
