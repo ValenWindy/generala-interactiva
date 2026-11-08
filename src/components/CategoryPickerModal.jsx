@@ -42,7 +42,7 @@ export default function CategoryPickerModal({ diceValues, scores, rollCount, onS
 
         {mustCross.length > 0 && (
           <section className="category-modal__section">
-            <h3>O tachar</h3>
+            <h3>{canScore.length > 0 ? 'O tachar' : 'Tachar'}</h3>
             <ul className="category-modal__list">
               {mustCross.map((c) => (
                 <li key={c.id}>

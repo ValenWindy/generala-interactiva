@@ -282,14 +282,6 @@ export default function Game({ players, onExit, muted, onToggleMuted }) {
                 >
                   Confirmar selección
                 </button>
-                <button
-                  type="button"
-                  className="btn btn--small btn--outline"
-                  onClick={() => setShowCategoryModal(true)}
-                  disabled={!canSelectCategory}
-                >
-                  Elegir categoría
-                </button>
                 {canInteract && mustKeepOneLoose && (
                   <p className="table__warning">
                     Dejá al menos un dado sin guardar para poder sacudir el cubilete de nuevo.

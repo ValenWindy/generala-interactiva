@@ -47,7 +47,7 @@
   margin-top: 0.4rem;
 }
 
-/* En pantallas grandes, subirla para que no tape la mesa */
+
 @media (min-width: 601px) {
   .special-offer__overlay {
     align-items: flex-start;
